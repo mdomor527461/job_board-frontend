@@ -25,6 +25,8 @@ document.getElementById('jobCreateForm').onsubmit = async function(event) {
             alert('Job created successfully!');
             // Optionally redirect to another page or reset the form
             document.getElementById('jobCreateForm').reset();
+            window.location.href = "index.html";
+            
         } else {
             const errorData = await response.json();
             console.error('Error:', errorData);
@@ -37,7 +39,7 @@ document.getElementById('jobCreateForm').onsubmit = async function(event) {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-    const categorySelect = document.getElementById('category');
+    const categorySelect = document.getElementById('category_list');
 
     fetch('https://job-board-backend-zxvu.onrender.com/api/categories/')
         .then(response => response.json())

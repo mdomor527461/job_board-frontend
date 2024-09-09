@@ -27,7 +27,7 @@ const handleRegistration = (event) => {
               if (status === 201) {  // 201 Created
                   // Registration successful, redirect to login page
                   window.location.href = "login.html";
-                  alert("register successfylly");
+                  alert("register successfully");
               } else {
                   // Handle specific errors
                   if (body.username) {

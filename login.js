@@ -20,7 +20,7 @@ const handleLogin = (event) => {
             localStorage.setItem("user_type",body.user_type);
             localStorage.setItem("employer_id",body.user_id);
             window.location.href = "dashboard.html";
-            alert("login successfylly");
+            alert("login successfully");
         } else {
             document.getElementById("error").innerText = body.detail || "Login failed! Please check your username and password.";
         }

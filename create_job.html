@@ -57,18 +57,40 @@
                             </div>
                         </div>
                         <div class="col-xl-5 col-lg-5 d-none d-lg-block align-items-center">
-                            <div class="Appointment">
+                            <div class="Appointment" id="nav-outlook">
                                 <!-- <div class="phone_num d-none d-xl-block">
                                     <a href="register.html" class="boxed-btn3">Update Your Dashboard</a>
                                 </div> -->
-                                <div class="phone_num d-none d-xl-block">
-                                    <button class="boxed-btn3 bg-danger" onclick="handleLogout(event)">Logout</button>
-                                </div>
+                            
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
                         </div>
+                        <script>
+                            const user_type = localStorage.getItem("user_type");
+                            nav_menu = document.getElementById("nav-outlook")
+                            if(user_type){
+                                nav_menu.innerHTML = `
+                                <div class="phone_num d-none d-xl-block mx-2">
+                                    <a class="boxed-btn3" href="dashboard.html">Dashboard</a>
+                                </div>
+                                `
+                            }
+                            else{
+                                nav_menu.innerHTML = `
+                                 <div class="phone_num d-none d-xl-block" >
+                                    <a href="register.html" class="boxed-btn3">Register</a>
+                                </div>
+                                <div>
+                                    <p class="text-light">already have an account?</p>
+                                </div>
+                                <div class="phone_num d-none d-xl-block mx-2">
+                                    <a class="boxed-btn3" href="login.html">Login</a>
+                                </div>
+                                `;
+                            }
+                        </script>
                     </div>
                 </div>
 
@@ -144,9 +166,9 @@
             <input type="text" class="form-control" id="company_name" name="company_name" required>
         </div>
         <div class="mb-3">
-            <label for="category" class="form-label">Category</label>
-            <input list="category" style="width: 750px; height: 50px;">
-            <datalist id="category">
+            <label for="category_list" class="form-label">Category</label>
+            <input list="category_list" id="category" style="width: 750px; height: 50px;">
+            <datalist id="category_list">
             </datalist>
         </div>
         <button type="submit" class="btn btn-primary mt-3 mb-5">Create Job</button>
