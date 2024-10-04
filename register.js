@@ -13,7 +13,7 @@ const handleRegistration = (event) => {
       email,
   };
 
-  if (password === confirm_password) {
+  if (password === confirm_password){
       document.getElementById("error").innerText = "";
       
       if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {

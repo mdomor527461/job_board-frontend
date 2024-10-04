@@ -1,0 +1,9 @@
+.job-item{
+    background-color: rgb(175, 210, 223);
+    border-radius: 20px;
+    box-shadow: 2px 3px 3px rgb(74, 186, 117);
+}
+.job-item:hover{
+    transform: scale(1.02);
+    box-shadow: 4px 6px 6px rgb(74, 186, 117);
+}
