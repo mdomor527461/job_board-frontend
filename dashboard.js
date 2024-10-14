@@ -15,7 +15,7 @@ const loadDashboard = () => {
             })
             .catch(error => console.error('Error:', error));
     }
-    else {
+    else if(user_type == 'job_seeker'){
         fetch('https://job-board-backend-zxvu.onrender.com/api/job-seeker/dashboard/', {
             method: 'GET',
             headers: {
@@ -28,6 +28,10 @@ const loadDashboard = () => {
                 insertJobData(data);
             })
             .catch(error => console.error('Error:', error));
+    }
+    else{
+        alert("No logged in User");
+        window.location.href = "index.html";
     }
 }
 loadDashboard();

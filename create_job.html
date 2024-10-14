@@ -50,8 +50,8 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">home</a></li>
-                                        <li><a href="about.html">About</a></li>
+                                        <!-- <li><a href="index.html">home</a></li>
+                                        <li><a href="about.html">About</a></li> -->
                                     </ul>
                                 </nav>
                             </div>
@@ -69,25 +69,20 @@
                         </div>
                         <script>
                             const user_type = localStorage.getItem("user_type");
-                            nav_menu = document.getElementById("nav-outlook")
+                            nav_menu = document.getElementById("navigation")
                             if(user_type){
                                 nav_menu.innerHTML = `
-                                <div class="phone_num d-none d-xl-block mx-2">
-                                    <a class="boxed-btn3" href="dashboard.html">Dashboard</a>
-                                </div>
+                                    <li><a href="index.html">home</a></li>
+                                    <li><a href="about.html">About</a></li>   
+                                    <li ><a href="dashboard.html">Dashboard</a></li>
+                                    <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
                                 `
                             }
                             else{
                                 nav_menu.innerHTML = `
-                                 <div class="phone_num d-none d-xl-block" >
-                                    <a href="register.html" class="boxed-btn3">Register</a>
-                                </div>
-                                <div>
-                                    <p class="text-light">already have an account?</p>
-                                </div>
-                                <div class="phone_num d-none d-xl-block mx-2">
-                                    <a class="boxed-btn3" href="login.html">Login</a>
-                                </div>
+                                <li><a href="index.html">home</a></li>
+                                <li><a href="about.html">About</a></li>   
+                                <li><a href="register.html">SignUp/Login</a></li>
                                 `;
                             }
                         </script>
@@ -255,6 +250,7 @@ All right reserved by  &copy;<small>omor faruk</small>
 <!-- link that opens popup -->
 
 <!-- JS here -->
+<script src="logout.js"></script>
 <script src="js/vendor/modernizr-3.5.0.min.js"></script>
 <script src="js/vendor/jquery-1.12.4.min.js"></script>
 <script src="js/popper.min.js"></script>

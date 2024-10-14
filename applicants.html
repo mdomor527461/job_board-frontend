@@ -50,21 +50,37 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="jobs.html" id="user_work"></a></li>
+                                        <!-- <li><a href="jobs.html" id="user_work"></a></li> -->
                                     </ul>
                                 </nav>
                             </div>
                         </div>
+                        <!-- conditional nav  -->
+                        <script>
+                            const user_type = localStorage.getItem("user_type");
+                            nav_menu = document.getElementById("navigation")
+                            if(user_type){
+                                nav_menu.innerHTML = `
+                                    <li><a href="index.html">home</a></li>
+                                    <li><a href="about.html">About</a></li>   
+                                    <li ><a href="dashboard.html">Dashboard</a></li>
+                                    <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                `
+                            }
+                            else{
+                                nav_menu.innerHTML = `
+                                <li><a href="index.html">home</a></li>
+                                <li><a href="about.html">About</a></li>   
+                                <li><a href="register.html">SignUp/Login</a></li>
+                                `;
+                            }
+                        </script>
+                        
                         <div class="col-xl-5 col-lg-5 d-none d-lg-block align-items-center">
                             <div class="Appointment">
                                 <!-- <div class="phone_num d-none d-xl-block">
                                     <a href="register.html" class="boxed-btn3">Update Your Dashboard</a>
                                 </div> -->
-                                <div class="phone_num d-none d-xl-block">
-                                    <button class="boxed-btn3 bg-danger" onclick="handleLogout(event)">Logout</button>
-                                </div>
                             </div>
                         </div>
                         <div class="col-12">
