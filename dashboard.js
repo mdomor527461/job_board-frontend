@@ -2,7 +2,7 @@ const loadDashboard = () => {
     const user_type = localStorage.getItem("user_type");
     const token = localStorage.getItem('token');
     if (user_type == "employer") {
-        fetch('https://job-board-backend-zxvu.onrender.com/api/employer/dashboard/', {
+        fetch('https://job-board-backend-lemon.vercel.app/api/employer/dashboard/', {
             method: 'GET',
             headers: {
                 Authorization: `Token ${token}`,
@@ -16,7 +16,7 @@ const loadDashboard = () => {
             .catch(error => console.error('Error:', error));
     }
     else if(user_type == 'job_seeker'){
-        fetch('https://job-board-backend-zxvu.onrender.com/api/job-seeker/dashboard/', {
+        fetch('https://job-board-backend-lemon.vercel.app/api/job-seeker/dashboard/', {
             method: 'GET',
             headers: {
                 'Authorization': `Token ${token}`,
@@ -93,7 +93,7 @@ const updateEmployerDashboard = (id) => {
     updateModal.style.display = "block";
 
     // Fetch the data for the selected job
-    fetch(`https://job-board-backend-zxvu.onrender.com/api/employer/job/${id}/`, {
+    fetch(`https://job-board-backend-lemon.vercel.app/api/employer/job/${id}/`, {
         method: 'GET',
         headers: {
             Authorization: `Token ${token}`,
@@ -124,7 +124,7 @@ const updateEmployerDashboard = (id) => {
             };
 
             // Send updated data to the server
-            fetch(`https://job-board-backend-zxvu.onrender.com/api/employer/job/${id}/`, {
+            fetch(`https://job-board-backend-lemon.vercel.app/api/employer/job/${id}/`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Token ${token}`,
@@ -159,7 +159,7 @@ const viewApplicants = (id) =>{
     const token = localStorage.getItem("token");
     const modal = document.getElementById("applicants-modal");
     modal.style.display = "block";
-    fetch(`https://job-board-backend-zxvu.onrender.com/api/employer/job/${id}/applicants/`, {
+    fetch(`https://job-board-backend-lemon.vercel.app/api/employer/job/${id}/applicants/`, {
         method: 'GET',
         headers: {
             Authorization: `Token ${token}`,
@@ -203,7 +203,7 @@ const updateJobDashboard = (id) => {
     updateModal.style.display = "block";
 
     // Fetch the data for the selected job
-    fetch(`https://job-board-backend-zxvu.onrender.com/api/job-seeker/dashboard/${id}`, {
+    fetch(`https://job-board-backend-lemon.vercel.app/api/job-seeker/dashboard/${id}`, {
         method: 'GET',
         headers: {
             Authorization: `Token ${token}`,
@@ -225,7 +225,7 @@ const updateJobDashboard = (id) => {
             formData.append('applied_at', data.applied_at);
 
             // Send updated data to the server
-            fetch(`https://job-board-backend-zxvu.onrender.com/api/job-seeker/dashboard/${id}`, {
+            fetch(`https://job-board-backend-lemon.vercel.app/api/job-seeker/dashboard/${id}`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Token ${token}`,

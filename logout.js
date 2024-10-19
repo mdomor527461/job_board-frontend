@@ -1,7 +1,7 @@
 const handleLogout = (event) => {
     event.preventDefault();  // Prevent the default anchor behavior
 
-    fetch("https://job-board-backend-zxvu.onrender.com/api/users/logout/", {
+    fetch("https://job-board-backend-lemon.vercel.app/api/users/logout/", {
         method: "POST",  // Correct method
         headers: {
             "Content-Type": "application/json",

@@ -6,7 +6,7 @@ const handleLogin = (event) => {
         username,
         password,
     };
-    fetch("https://job-board-backend-zxvu.onrender.com/api/users/login/", {
+    fetch("https://job-board-backend-lemon.vercel.app/api/users/login/", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(info),

@@ -14,7 +14,7 @@ document.getElementById('applyForm').onsubmit = async function(event) {
     formData.append('resume', resume); // Append the resume to the FormData object
 
     try {
-        const response = await fetch(`https://job-board-backend-zxvu.onrender.com/api/jobs/${jobId}/apply/`, {
+        const response = await fetch(`https://job-board-backend-lemon.vercel.app/api/jobs/${jobId}/apply/`, {
             method: 'POST',
             body: formData,
             headers: {

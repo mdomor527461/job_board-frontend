@@ -110,7 +110,7 @@
                                     const id = localStorage.getItem("category_id");
                                     // API URL
                                     if(id){
-                                        const apiUrl = `https://job-board-backend-zxvu.onrender.com/api/jobs/?category=${id}`;
+                                        const apiUrl = `https://job-board-backend-lemon.vercel.app/api/jobs/?category=${id}`;
                                         const jobCountElement = document.getElementById('job-count');                          
                                         fetch(apiUrl)
                                             .then(response => response.json()) 
@@ -123,7 +123,7 @@
 
                                     }
                                     else{
-                                        const apiUrl = 'https://job-board-backend-zxvu.onrender.com/api/jobs/';
+                                        const apiUrl = 'https://job-board-backend-lemon.vercel.app/api/jobs/';
                                         const jobCountElement = document.getElementById('job-count');                          
                                         fetch(apiUrl)
                                             .then(response => response.json()) 
@@ -285,7 +285,7 @@ All right reserved by  &copy;<small>omor faruk</small>
 
     <!-- link that opens popup -->
     <!-- JS here -->
-     <script src="logout.js"></script>
+ 
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -318,6 +318,7 @@ All right reserved by  &copy;<small>omor faruk</small>
     <script src="login.js"></script>
     <script src="joblist.js"></script>
     <script src="categories.js"></script>
+    <script src="logout.js"></script>
     
 </body>
 

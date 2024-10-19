@@ -12,7 +12,7 @@ document.getElementById('jobCreateForm').onsubmit = async function(event) {
     };
     console.log(localStorage.getItem("employer_id"));
     try {
-        const response = await fetch('https://job-board-backend-zxvu.onrender.com/api/jobs/', {
+        const response = await fetch('https://job-board-backend-lemon.vercel.app/api/jobs/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ document.getElementById('jobCreateForm').onsubmit = async function(event) {
 document.addEventListener('DOMContentLoaded', function () {
     const categorySelect = document.getElementById('category_list');
 
-    fetch('https://job-board-backend-zxvu.onrender.com/api/categories/')
+    fetch('https://job-board-backend-lemon.vercel.app/api/categories/')
         .then(response => response.json())
         .then(data => {
             console.log(data);

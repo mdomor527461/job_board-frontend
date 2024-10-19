@@ -17,7 +17,7 @@ const handleRegistration = (event) => {
       document.getElementById("error").innerText = "";
       
       if (/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(password)) {
-          fetch("https://job-board-backend-zxvu.onrender.com/api/users/register/", {
+          fetch("https://job-board-backend-lemon.vercel.app/api/users/register/", {
               method: "POST",
               headers: { "content-type": "application/json" },
               body: JSON.stringify(info),

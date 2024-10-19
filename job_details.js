@@ -1,5 +1,5 @@
 const loadJobDetails = (id) =>{
-    fetch(`https://job-board-backend-zxvu.onrender.com/api/jobs/${id}`)
+    fetch(`https://job-board-backend-lemon.vercel.app/api/jobs/${id}`)
     .then(res => res.json())
     .then(data => insertData(data))
 }
