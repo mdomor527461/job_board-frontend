@@ -24,6 +24,7 @@ document.getElementById('applyForm').onsubmit = async function(event) {
 
         if (response.ok) {
             alert('Application submitted successfully!');
+            window.location.href = "dashboard.html";
             // Optionally redirect the user to another page
         } else {
             const errorData = await response.json();

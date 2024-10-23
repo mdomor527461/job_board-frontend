@@ -72,8 +72,8 @@ const insertJobData = (data) => {
         <th scope="row">${item.id}</th>
         <td>${item.applicant}</td>
         <td>${item.job}</td>
-        <td>${item.resume}</td>
-        <td>${item.applied_at}</td>  
+        <a href="https://res.cloudinary.com/dtinvdr6a/${ item.resume }" target="_blank">Show Resume</a>
+        <td>${new Date(item.applied_at).toLocaleString('en-GB',{year:"numeric",month:"long",day:'numeric'})}</td>  
         <div class="d-flex justify-content-center">
             <button class="btn btn-success p-2 mx-3" onclick="updateJobDashboard(${item.id})">
                 update
@@ -181,8 +181,8 @@ const insertApplicantData = (data) => {
         tr.innerHTML = `
              <th scope="col">${item.id}</th>
             <th scope="col">${item.applicant}</th>
-            <th scope="col">${item.resume}</th>
-            <th scope="col">${item.applied_at}</th>
+            <th scope="col"><a href="https://res.cloudinary.com/dtinvdr6a/${ item.resume }" target="_blank">show resume</a></th>
+            <th scope="col">${(new Date(item.applied_at).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }))}</th>
         `
         console.log(tr);
         console.log(parent);

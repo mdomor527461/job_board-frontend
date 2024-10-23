@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/gijgo.css">
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
@@ -64,6 +65,16 @@
             padding: 30px;
             border-radius: 10px;
         }
+        #navigation li a{
+            text-decoration: none;
+        }
+
+        #products p a{
+            text-decoration: none;
+        }
+        #links p a{
+            text-decoration: none;
+        }
     </style>
 
 </head>
@@ -86,7 +97,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-4 col-lg-10">
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
@@ -95,22 +106,27 @@
                                 </nav>
                             </div>
                         </div>
-                        <div class="col-xl-5 col-lg-5 d-none d-lg-block align-items-center">
-                           
-                            <div class="Appointment" id="nav-outlook">
-                               
-                            </div>
-                        </div>
+                    
 
                          <!-- condition nav  -->
                          <script>
                             const user_type = localStorage.getItem("user_type");
                             nav_menu = document.getElementById("navigation")
-                            if(user_type){
+                            if(user_type == "employer"){
                                 nav_menu.innerHTML = `
                                     <li><a href="index.html">home</a></li>
                                     <li><a href="about.html">About</a></li>   
                                     <li ><a href="dashboard.html">Dashboard</a></li>
+                                    <li ><a href="create_job.html#jobCreateForm">Post Job</a></li>
+                                    <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                `
+                            }
+                            else if(user_type == "job_seeker"){
+                              nav_menu.innerHTML = `
+                                    <li><a href="index.html">home</a></li>
+                                    <li><a href="about.html">About</a></li>   
+                                    <li ><a href="dashboard.html">Dashboard</a></li>
+                                    <li ><a href="index.html#job-list">Apply Job</a></li>
                                     <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
                                 `
                             }
@@ -118,7 +134,7 @@
                                 nav_menu.innerHTML = `
                                 <li><a href="index.html">home</a></li>
                                 <li><a href="about.html">About</a></li>   
-                                <li><a href="register.html">SignUp/Login</a></li>
+                                <li><a href="login.html">SignUp/Login</a></li>
                                 `;
                             }
                         </script>
@@ -233,82 +249,145 @@
 
 
 
-    <!-- footer start -->
-    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
-                            <div class="footer_logo">
-                                <a href="index.html">
-                                    <img src="img/logo.png" alt="">
-                                </a>
-                            </div>
-                            <p>
-                                md3147693@gmail.com <br>
-                                +8801963367611 <br>
-                                Chachkia,Atghoria,Pabna
-                            </p>
-                            <div class="socail_links">
-                                <ul>
-                                    <li>
-                                        <a href="https://www.facebook.com/profile.php?id=100095631724268&mibextid=ZbWKwL" target="_blank">
-                                            <i class="ti-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/mdomor6674/" target="_blank">
-                                            <i class="fa fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/mdomor6674/" target="_blank">
-                                            <i class="fa fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="https://www.instagram.com/mdomor6674/" target="_blank">
-                                            <i class="fa fa-google-plus"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget wow fadeInUp" data-wow-duration="1.2s" data-wow-delay=".5s">
-                            <h3 class="footer_title">
-                                Top Categories
-                            </h3>
-                            <ul>
-                                <li><a href="index.html" class="btn" onclick="getid(1)">IT</a></li>
-                                <li><a href="index.html" class="btn" onclick="getid(2)">Robotics</a></li>
-                                <li><a href="index.html" class="btn" onclick="getid(3)" >Development</a></li>
-                                <li><a href="index.html" class="btn" onclick="getid(4)" >Design</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+   <!-- footer start -->
+   <div class="my-5">
+    <footer
+            class="text-center text-lg-start text-dark"
+            style="background-color: #ECEFF1"
+            >
+      <!-- Section: Social media -->
+      <section
+               class="d-flex justify-content-between p-4 text-white"
+               style="background-color: #21abd1"
+               >
+        <!-- Left -->
+        <div class="me-5">
+          <span>Get connected with us on social networks:</span>
         </div>
-        <div class="copy-right_text wow fadeInUp" data-wow-duration="1.4s" data-wow-delay=".3s">
-            <div class="container">
-                <div class="footer_border"></div>
-                <div class="row">
-                    <div class="col-xl-12">
-                        <p class="copy_right text-center">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-All right reserved by  &copy;<small>omor faruk</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <!-- Left -->
+  
+        <!-- Right -->
+        <div>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="" class="text-white me-4">
+            <i class="fab fa-github"></i>
+          </a>
         </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+  
+      <!-- Section: Links  -->
+      <section class="bg-dark text-light my-5 py-5">
+        <div class="container text-center text-md-start mt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <h6 class="text-uppercase fw-bold">Site Purpose</h6>
+              <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #4de1ff; height: 2px"
+                  />
+              <p class="text-light">
+                JobHub connects job seekers with employers, offering a user-friendly platform for posting job listings, applying for positions, and managing applications. Find your dream job or hire top talent effortlessly. 
+              </p>
+            </div>
+            <!-- Grid column -->
+  
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" id="products">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">My Products</h6>
+              <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #4de1ff; height: 2px"
+                  />
+              <p>
+                <a href="https://mdomor527461.github.io/golpokuri/" target="_blank" class="text-light">Golpokuri website</a>
+              </p>
+              <p>
+                <a href="https://car-selling-project.onrender.com" target="_blank" class="text-light">car selling website</a>
+              </p>
+              <p>
+                <a href="https://library-management-project-u3xs.onrender.com" target="_blank"  class="text-light">library management website</a>
+              </p>
+          
+            </div>
+            <!-- Grid column -->
+  
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4" id="links">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Social Media</h6>
+              <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #4de1ff; height: 2px"
+                  />
+              <p>
+                <a href="https://www.facebook.com/profile.php?id=100095631724268&mibextid=ZbWKwL" class="text-light">Facebook</a>
+              </p>
+              <p>
+                <a href="https://github.com/mdomor527461" class="text-light">Github</a>
+              </p>
+              <p>
+                <a href="https://www.instagram.com/mdomor6674/?hl=en" class="text-light">Instagran</a>
+              </p>
+              <p>
+                <a href="https://x.com/login" class="text-light">Twitter</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+  
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bold">Contact</h6>
+              <hr
+                  class="mb-4 mt-0 d-inline-block mx-auto"
+                  style="width: 60px; background-color: #4de1ff; height: 2px"
+                  />
+              <p class="text-light"><i class="fas fa-home mr-3"></i> Kawla, Airport, Dhaka</p>
+              <p class="text-light"><i class="fas fa-envelope mr-3"></i> md3147693@gmail.com</p>
+              <p class="text-light"><i class="fas fa-phone mr-3"></i> +88 01963-367311</p>
+              <p class="text-light"><i class="fas fa-print mr-3"></i> +88 01765-571201</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+  
+      <!-- Copyright -->
+      <div
+           class="text-center p-3 bg-dark text-light"
+           >
+        © 2020 Copyright:
+        <a class="text-light" href="https://github.com/mdomor527461"
+           >omorfaruk</a
+          >
+      </div>
+      <!-- Copyright -->
     </footer>
-    <!--/ footer end  -->
+   
+  </div>
+<!--/ footer end  -->
 
     <!-- link that opens popup -->
     <!-- JS here -->

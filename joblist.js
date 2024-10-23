@@ -3,17 +3,17 @@ const loadJobList = (data) =>{
     data.forEach((item) =>{
         const parent = document.getElementById("job-parent");
         const div = document.createElement("div");
-        div.classList.add("my-3");
-        div.classList.add("mx-2");
-        div.classList.add("col-lg-3.6");
+        div.classList.add("my-5");
+        div.classList.add("mx-5");
+        div.classList.add("col-lg-4");
         div.classList.add("job-item");
         div.innerHTML = `
                 <div class="single_jobs d-flex justify-content-between">
                     <div class="jobs_left d-flex align-items-center">
-                        <div class="card" style="width: 18rem; background-color: rgb(175, 221, 223);border:none">
+                        <div class="card" style="width: 100%;border:none">
                             <div class="card-body">
                                 <h5 class="card-title">${item.title}</h5>
-                                <p class="card-text text-dark" >${item.requirements}</p>
+                                <p class="card-text text-dark" >${item.description.slice(0,123)}....</p>
                                 <p class="card-text text-dark" >${item.location}</p>
                                 <p class="card-text text-dark" >${item.company_name}</p>
                                
