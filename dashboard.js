@@ -1,3 +1,4 @@
+
 const loadDashboard = () => {
     const user_type = localStorage.getItem("user_type");
     const token = localStorage.getItem('token');
@@ -42,18 +43,16 @@ const insertEmployerData = (data) => {
         const parent = document.getElementById("dashboard-data");
         const tr = document.createElement("tr");
         tr.innerHTML = `
-        <th scope="row">${item.id}</th>
         <td>${item.title}</td>
         <td>${item.company_name}</td>
-        <td>${item.location}</td>
-        <td>${item.requirements}</td>
-        <td>${item.date_posted}</td>
-        <td><div class="d-flex justify-content-center">
-            <button class="btn btn-success p-2 mx-3" onclick="updateEmployerDashboard(${item.id})">
-                update
-            </button>
+        <td><div class="d-flex justify-content-start">
             <button class="btn btn-primary p-2" onclick="viewApplicants(${item.id})">
                 view_applicants
+            </button>
+        </div></td>
+        <td><div class="d-flex justify-content-start">
+            <button class="btn btn-success p-2 mx-3" onclick="updateEmployerDashboard(${item.id})">
+                update
             </button>
         </div></td>
          
@@ -69,11 +68,9 @@ const insertJobData = (data) => {
         const parent = document.getElementById("dashboard-data");
         const tr = document.createElement("tr");
         tr.innerHTML = `
-        <th scope="row">${item.id}</th>
-        <td>${item.applicant}</td>
         <td>${item.job}</td>
-        <a href="https://res.cloudinary.com/dtinvdr6a/${ item.resume }" target="_blank">Show Resume</a>
         <td>${new Date(item.applied_at).toLocaleString('en-GB',{year:"numeric",month:"long",day:'numeric'})}</td>  
+        <td><a href="https://res.cloudinary.com/dtinvdr6a/${ item.resume }" target="_blank" style="cursor">Show Resume</a></td>
         <div class="d-flex justify-content-center">
             <button class="btn btn-success p-2 mx-3" onclick="updateJobDashboard(${item.id})">
                 update
@@ -83,7 +80,7 @@ const insertJobData = (data) => {
         parent.appendChild(tr);
     })
 }
-// update employer model
+// // update employer model
 const updateEmployerDashboard = (id) => {
     const token = localStorage.getItem('token');
     const updateModal = document.getElementById("updateModal");
@@ -134,7 +131,7 @@ const updateEmployerDashboard = (id) => {
             })
             .then((res) => res.json())
             .then((data) => {
-                console.log("Job updated:", data);
+                alert("job updated successfully");
                 updateModal.style.display = "none";
                 window.location.href = "dashboard.html";
                  // Close the modal after update
@@ -154,7 +151,7 @@ const updateEmployerDashboard = (id) => {
 document.querySelector(".close").onclick = function() {
     document.getElementById("updateModal").style.display = "none";
 }
-
+//view applicants
 const viewApplicants = (id) =>{
     const token = localStorage.getItem("token");
     const modal = document.getElementById("applicants-modal");
@@ -173,7 +170,7 @@ const viewApplicants = (id) =>{
         .catch(error => console.error('Error:', error));
 }
 
-
+//insert applicant data 
 const insertApplicantData = (data) => {
     data.forEach((item) => {
         const parent = document.getElementById("data");
@@ -192,8 +189,9 @@ const insertApplicantData = (data) => {
 }
 document.querySelector("#close").onclick = function() {
     document.getElementById("applicants-modal").style.display = "none";
+    location.reload();
 }
-// update job seeker dashboard
+// // update job seeker dashboard
 const updateJobDashboard = (id) => {
     const token = localStorage.getItem('token');
     const updateModal = document.getElementById("updateJobModal");
@@ -234,7 +232,7 @@ const updateJobDashboard = (id) => {
             })
             .then((res) => res.json())
             .then((data) => {
-                console.log("Job seeker data updated:", data);
+                alert("application updated successfully")
                 updateModal.style.display = "none";
                 window.location.href = "dashboard.html";
                 // Optionally, you can refresh the dashboard to show updated data
@@ -253,3 +251,5 @@ const updateJobDashboard = (id) => {
 document.querySelector(".off").onclick = function() {
     document.getElementById("updateJobModal").style.display = "none";
 }
+
+

@@ -6,3 +6,25 @@
     transform: scale(1.02);
     box-shadow: 4px 6px 6px rgb(74, 186, 117);
 }
+/* .menu-items i{
+    position: absolute;
+    left: 35px;
+} */
+
+.menu-items:hover{
+    background-color: rgb(70, 155, 155);
+}
+/* profile page styleing  */
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #f6d365;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+}
+#parent:hover{
+    background-color: antiquewhite;
+}

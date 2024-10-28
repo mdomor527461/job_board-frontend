@@ -1,0 +1,341 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>JobHub</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/gijgo.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/slicknav.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+      <!-- header-start -->
+  <header>
+    <div class="header-area">
+        <div id="" class="main-header-area">
+            <div class="container-fluid ">
+                <div class="header_bottom_border">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-2">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="img/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-10">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                                  
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                         <!-- condition nav  -->
+                         <script>
+                            const user_type = localStorage.getItem("user_type");
+                            nav_menu = document.getElementById("navigation")
+                            if(user_type == "employer"){
+                                nav_menu.innerHTML = `
+                                    <li><a href="index.html">home</a></li>
+                                    <li><a href="about.html">About</a></li> 
+                                    <li><a href="profile.html">Profile</a></li>   
+                                    <li ><a href="dashboard.html">Dashboard</a></li>
+                                    <li ><a href="create_job.html#jobCreateForm">Post Job</a></li>
+                                    <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                `
+                            }
+                            else if(user_type == "job_seeker"){
+                              nav_menu.innerHTML = `
+                                    <li><a href="index.html">home</a></li>
+                                    <li><a href="about.html">About</a></li>   
+                                    <li><a href="profile.html">Profile</a></li>   
+                                    <li ><a href="dashboard.html">Dashboard</a></li>
+                                    <li ><a href="index.html#job-list">Apply Job</a></li>
+                                    <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                `
+                            }
+                            else{
+                                nav_menu.innerHTML = `
+                                <li><a href="index.html">home</a></li>
+                                <li><a href="about.html">About</a></li>   
+                                <li><a href="login.html">SignUp/Login</a></li>
+                                `;
+                            }
+                        </script>
+
+
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>
+<!-- header-end -->
+
+  
+    <!-- slider_area_start -->
+    <div class="slider_area">
+        <div class="single_slider  d-flex align-items-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 col-md-6">
+                        <div class="slider_text">
+                            <h5 id="job-count" class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".2s">
+                                <script>
+                                    const id = localStorage.getItem("category_id");
+                                    // API URL
+                                    if(id){
+                                        const apiUrl = `https://job-board-backend-lemon.vercel.app/api/jobs/?category=${id}`;
+                                        const jobCountElement = document.getElementById('job-count');                          
+                                        fetch(apiUrl)
+                                            .then(response => response.json()) 
+                                            .then(data => {
+                                                loadJobList(data);
+                                                const jobCount = data.length; 
+                                                jobCountElement.innerHTML= `${jobCount} Jobs listed`;
+                                                localStorage.removeItem("category_id");
+                                        })
+
+                                    }
+                                    else{
+                                        const apiUrl = 'https://job-board-backend-lemon.vercel.app/api/jobs/';
+                                        const jobCountElement = document.getElementById('job-count');                          
+                                        fetch(apiUrl)
+                                            .then(response => response.json()) 
+                                            .then(data => {
+                                                // loadJobList(data);
+                                                const jobCount = data.length; 
+                                                jobCountElement.innerHTML= `${jobCount} Jobs listed`;
+                                        })
+                                    }
+                                </script></h5>
+                            <h3 class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".3s">Find your Dream Job</h3>
+                            <p class="wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".4s">We provide online instant cash loans with quick approval that suit your term length</p>
+                            <div class="sldier_btn wow fadeInLeft" data-wow-duration="1s" data-wow-delay=".5s">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ilstration_img wow fadeInRight d-none d-lg-block text-right" data-wow-duration="1s" data-wow-delay=".2s">
+            <img src="img/banner/illustration.png" alt="">
+        </div>
+    </div>
+    <!-- slider_area_end -->
+
+    <!-- profile start  -->
+    <div id="parent">
+        
+    </div>
+    <!-- profile end  -->
+    <!-- footer start -->
+    <div class="my-5">
+        <footer
+                class="text-center text-lg-start text-dark"
+                style="background-color: #ECEFF1"
+                >
+          <!-- Section: Social media -->
+          <section
+                   class="d-flex justify-content-between p-4 text-white"
+                   style="background-color: #21abd1"
+                   >
+            <!-- Left -->
+            <div class="me-5">
+              <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+      
+            <!-- Right -->
+            <div>
+              <a href="" class="text-white me-4">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="" class="text-white me-4">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="" class="text-white me-4">
+                <i class="fab fa-google"></i>
+              </a>
+              <a href="" class="text-white me-4">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="" class="text-white me-4">
+                <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="" class="text-white me-4">
+                <i class="fab fa-github"></i>
+              </a>
+            </div>
+            <!-- Right -->
+          </section>
+          <!-- Section: Social media -->
+      
+          <!-- Section: Links  -->
+          <section class="bg-dark text-light my-5 py-5">
+            <div class="container text-center text-md-start mt-5">
+              <!-- Grid row -->
+              <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                  <!-- Content -->
+                  <h6 class="text-uppercase fw-bold">Site Purpose</h6>
+                  <hr
+                      class="mb-4 mt-0 d-inline-block mx-auto"
+                      style="width: 60px; background-color: #4de1ff; height: 2px"
+                      />
+                  <p class="text-light">
+                    JobHub connects job seekers with employers, offering a user-friendly platform for posting job listings, applying for positions, and managing applications. Find your dream job or hire top talent effortlessly. 
+                  </p>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold">My Products</h6>
+                  <hr
+                      class="mb-4 mt-0 d-inline-block mx-auto"
+                      style="width: 60px; background-color: #4de1ff; height: 2px"
+                      />
+                  <p>
+                    <a href="https://mdomor527461.github.io/golpokuri/" target="_blank" class="text-light">Golpokuri website</a>
+                  </p>
+                  <p>
+                    <a href="https://car-selling-project.onrender.com" target="_blank" class="text-light">car selling website</a>
+                  </p>
+                  <p>
+                    <a href="https://library-management-project-u3xs.onrender.com" target="_blank"  class="text-light">library management website</a>
+                  </p>
+              
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold">Social Media</h6>
+                  <hr
+                      class="mb-4 mt-0 d-inline-block mx-auto"
+                      style="width: 60px; background-color: #4de1ff; height: 2px"
+                      />
+                  <p>
+                    <a href="https://www.facebook.com/profile.php?id=100095631724268&mibextid=ZbWKwL" class="text-light">Facebook</a>
+                  </p>
+                  <p>
+                    <a href="https://github.com/mdomor527461" class="text-light">Github</a>
+                  </p>
+                  <p>
+                    <a href="https://www.instagram.com/mdomor6674/?hl=en" class="text-light">Instagran</a>
+                  </p>
+                  <p>
+                    <a href="https://x.com/login" class="text-light">Twitter</a>
+                  </p>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold">Contact</h6>
+                  <hr
+                      class="mb-4 mt-0 d-inline-block mx-auto"
+                      style="width: 60px; background-color: #4de1ff; height: 2px"
+                      />
+                  <p class="text-light"><i class="fas fa-home mr-3"></i> Kawla, Airport, Dhaka</p>
+                  <p class="text-light"><i class="fas fa-envelope mr-3"></i> md3147693@gmail.com</p>
+                  <p class="text-light"><i class="fas fa-phone mr-3"></i> +88 01963-367311</p>
+                  <p class="text-light"><i class="fas fa-print mr-3"></i> +88 01765-571201</p>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!-- Grid row -->
+            </div>
+          </section>
+          <!-- Section: Links  -->
+      
+          <!-- Copyright -->
+          <div
+               class="text-center p-3 bg-dark text-light"
+               >
+            © 2020 Copyright:
+            <a class="text-light" href="https://github.com/mdomor527461"
+               >omorfaruk</a
+              >
+          </div>
+          <!-- Copyright -->
+        </footer>
+       
+      </div>
+    <!--/ footer end  -->
+
+    <!-- link that opens popup -->
+    <!-- JS here -->
+ 
+    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/isotope.pkgd.min.js"></script>
+    <script src="js/ajax-form.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/imagesloaded.pkgd.min.js"></script>
+    <script src="js/scrollIt.js"></script>
+    <script src="js/jquery.scrollUp.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/nice-select.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/gijgo.min.js"></script>
+
+
+
+    <!--contact js-->
+    <script src="js/contact.js"></script>
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/main.js"></script>
+    <script src="logout.js"></script>
+    <script src="profile.js"></script>
+    <!-- <script src="joblist.js"></script> -->
+    
+</body>
+
+</html>

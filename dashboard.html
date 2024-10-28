@@ -24,12 +24,13 @@
     <link rel="stylesheet" href="css/gijgo.css">
     <link rel="stylesheet" href="css/animate.min.css">
     <link rel="stylesheet" href="css/slicknav.css">
-
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
 <body>
+  
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
@@ -64,6 +65,7 @@
                               nav_menu.innerHTML = `
                                   <li><a href="index.html">home</a></li>
                                   <li><a href="about.html">About</a></li>   
+                                  <li><a href="profile.html">Profile</a></li> 
                                   <li ><a href="dashboard.html">Dashboard</a></li>
                                   <li ><a href="create_job.html#jobCreateForm">Post Job</a></li>
                                   <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
@@ -72,7 +74,8 @@
                           else if(user_type == "job_seeker"){
                             nav_menu.innerHTML = `
                                   <li><a href="index.html">home</a></li>
-                                  <li><a href="about.html">About</a></li>   
+                                  <li><a href="about.html">About</a></li>  
+                                  <li><a href="profile.html">Profile</a></li>  
                                   <li ><a href="dashboard.html">Dashboard</a></li>
                                   <li ><a href="index.html#job-list">Apply Job</a></li>
                                   <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
@@ -144,23 +147,126 @@
 
 
 <!-- content  -->
-<div>
-    <h1 id="welcome_message" class=" text-center mb-5 mt-5"></h1>
+<!-- proffessional dashboard start  -->
+<div class="row">
+  <div class="col-lg-2" style="background-color: rgb(50, 40, 81);height: 100vh;position: sticky;">
+    <div class="d-flex justify-content-center mt-3">
+      <h3 class="text-light">Jobhub</h3>
+    </div>
+    <div class="d-flex">
+      <p class="text-light mb-1 ml-5" style="opacity: calc(0.6);">Menu</p>
+    </div>
+    <div class="d-flex justify-content-center menu-items" style="cursor: pointer;">
+      <i class="fa-solid fa-house mx-2" style="color:white;margin-top: 10px;"></i>
+      <a href="index.html" class="text-light my-2 mx-2">Homepage</a>
+    </div>
+    <div class="d-flex justify-content-center menu-items" style="cursor: pointer;">
+      <i class="fa-solid fa-user mx-2" style="color:white;margin-top: 10px;"></i>
+      <a href="profile.html" class="text-light my-2 mx-2 ">Profile</a>
+    </div>
+    <div class="d-flex justify-content-center menu-items" id="action" style="cursor: pointer;">
+      
+    </div>
+    <!-- action by usertype scritp  -->
+     <script>
+      const action = document.getElementById('action');
+      if(user_type == "employer"){
+        action.innerHTML = `<i class="fa-solid fa-plus mx-2" style="color:white;margin-top: 10px;"></i>
+                            <a href="create_job.html" class="text-light my-2 mx-2">Add job</a>`;
+      }
+      else{
+        action.innerHTML = `
+        
+        `;
+      }
+     </script>
+    <div class="d-flex justify-content-center menu-items" style="cursor: pointer;">
+      <i class="fa-solid fa-eye mx-2" style="color:white;margin-top: 10px;"></i>
+      <a href="index.html#job-list" class="text-light my-2 mx-2">See job</a>
+    </div>
+    <div class="d-flex justify-content-center menu-items" id="record" style="cursor: pointer;">
+      
+    </div>
+    <!-- record by user type script  -->
+     <script>
+      const record = document.getElementById('record');
+      if(user_type == "employer"){
+        record.innerHTML = `<i class="fa-solid fa-briefcase mx-2" style="color:white;margin-top: 10px;"></i>
+                              <a href="dashboard.html#table" class="text-light my-2 mx-2">My jobs</p`;
+      }
+      else{
+        record.innerHTML = `<i class="fa-solid fa-dumpster mx-2" style="color:white;margin-top: 10px;"></i>
+                            <a href="dashboard.html#table" class="text-light my-2 mx-2">All applied</a>`;
+      }
+     </script>
+    <div class="d-flex justify-content-center menu-items" style="cursor: pointer;">
+      <i class="fa-solid fa-right-from-bracket mx-2" style="color:white;margin-top: 10px;"></i>
+      <p class="text-light my-2 mx-2" onclick="handleLogout(event)">Logout</p>
+    </div>
+  </div>
+    <div class="col-lg-7 mt-5" style="width: 40%;"><h1 id="dashboard-message"></h1>
+      <div style="width: 100%;" class="mt-5">
+        <h1 class="text-center" id="user-contain"></h1>
+        <table class="table mt-5">
+          <thead id="table">
+           
+          <tbody id="dashboard-data">
+           
+          </tbody>
+        </table>
+  
+      </div>
+    </div>
+    <div class="col-lg-3 mt-5" style="width: 20%;">
+      <div class="dropdown show">
+        <img src="img/comment/comment_1.png" alt=""><a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <small id="auth-user"></small>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <p>Welcome !</p>
+          <a class="dropdown-item" href="index.html">Home</a>
+          <a class="dropdown-item" href="profile.html">My Profile</a>
+          <l class="dropdown-item" style="cursor: pointer;" onclick="handleLogout(event)">Logout</li>
+        </div>
+      </div>
+    </div>
 </div>
+<!-- auth username script  -->
+ <script>
+  const username =  localStorage.getItem("username");
+  const username_container = document.getElementById('auth-user');
+  username_container.innerText = `${username}`;
+ </script>
+<!-- dashboard message script  -->
+<script>
+  var user_type = localStorage.getItem("user_type");
+  console.log(user_type);
+  const dashboard_message = document.getElementById('dashboard-message');
+  if(user_type == "employer"){
+    dashboard_message.innerText = "Employer Dashboard";
+  }
+  else{
+    dashboard_message.innerText = "Job Seeker Dashboard";
+  }
+</script>
+<!-- proffessional dashboard end -->
+
+<!-- <div>
+    <h1 id="welcome_message" class=" text-center mb-5 mt-5"></h1>
+</div> -->
 <!-- user message  -->
 <script>
-    const username = localStorage.getItem("username");
     var user_type = localStorage.getItem("user_type");
     if (user_type == "employer") {
-        document.getElementById("welcome_message").innerText = `Employer Dashboard`;
+        document.getElementById("user-contain").innerText = `Your Jobs`;
     }else {
-        document.getElementById("welcome_message").innerText = `Job_seeker Dashboard`;
+        document.getElementById("user-contain").innerText = `Your Applied`;
     }
 </script>
 
 <!-- dashboard table  -->
 
-  
+<!--   
 <div class="row">
   <table class="table">
     <thead class="thead-light" id="table">
@@ -170,7 +276,7 @@
        
     </tbody>
     </table>    
-</div>
+</div> -->
 <!-- table header script -->
 
 <script>
@@ -179,24 +285,19 @@
 
     if(user_type == 'employer'){
         tr.innerHTML =  `
-        <th scope="col">job_id</th>
         <th scope="col">Title</th>
-        <th scope="col">Company Name</th>
-        <th scope="col">Location</th>
-        <th scope="col">Requirments</th>
-        <th scope="col">Posted Date</th>
-        <th scope="col">Manage</th>
+        <th scope="col">Company</th>
+        <th scope="col">Applicants</th>
+        <th scope="col">Update</th>
     `;
     table.appendChild(tr);
     }
     else if(user_type == 'job_seeker'){
         tr.innerHTML =  `
-        <th scope="col">id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Job</th>
+        <th scope="col">Title</th>
+        <th scope="col">Applied_at</th>
         <th scope="col">Resume</th>
-        <th scope="col">applied date</th>
-        <th scope="col">action</th>
+        <th scope="col">Update</th>
     `;
     table.appendChild(tr);
     }
@@ -276,7 +377,7 @@
 
 
      <!-- footer start -->
-     <div class="my-5">
+     <div class="mb-5">
         <footer
                 class="text-center text-lg-start text-dark"
                 style="background-color: #ECEFF1"
@@ -446,10 +547,10 @@
 <script src="js/jquery.form.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <script src="js/mail-script.js"></script>
-
+<script src="dashboard.js"></script>
 
 <script src="js/main.js"></script>
-<script src="dashboard.js"></script>
+<!-- <script src="dashboard.js"></script> -->
 </body>
 
 </html>

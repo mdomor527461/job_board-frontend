@@ -18,7 +18,7 @@ const handleLogin = (event) => {
             localStorage.setItem("username", username);
             localStorage.setItem("token",token);
             localStorage.setItem("user_type",body.user_type);
-            localStorage.setItem("employer_id",body.user_id);
+            localStorage.setItem("user_id",body.user_id);
             window.location.href = "dashboard.html";
             alert("login successfully");
         } else {
