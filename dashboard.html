@@ -237,7 +237,9 @@
 <!-- image script  -->
  <script>
   const image_url = localStorage.getItem('image_url');
-  document.getElementById('dashboard-image').src = `${image_url ? image_url : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp'}`;
+  document.getElementById('dashboard-image').src = image_url && image_url !== 'null'
+  ? image_url
+  : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp';
  </script>
 <!-- auth username script  -->
  <script>
