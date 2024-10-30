@@ -19,6 +19,8 @@ const handleLogin = (event) => {
             localStorage.setItem("token",token);
             localStorage.setItem("user_type",body.user_type);
             localStorage.setItem("user_id",body.user_id);
+            localStorage.setItem("image_url",body.image_url);
+            localStorage.setItem('is_premium',body.is_premium);
             window.location.href = "dashboard.html";
             alert("login successfully");
         } else {

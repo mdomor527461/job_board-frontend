@@ -1,6 +1,28 @@
-const user_id = localStorage.getItem("user_id");
-const token = localStorage.getItem("token");
+var user_id = localStorage.getItem("user_id");
+var token = localStorage.getItem("token");
 console.log(user_id);
+
+//payment status check
+var payment = localStorage.getItem("payment")
+console.log(payment);
+if(payment == "yes"){
+    fetch(`https://job-board-backend-lemon.vercel.app/api/users/?id=${user_id}`)
+    .then(res => res.json())
+    .then(data => {
+        if(data[0].is_premium == true){
+            localStorage.setItem('is_premium',true);
+            alert("Congratulations!! you get premium membership");
+            window.location.reload();
+        }
+        else{
+            alert("Payment failed or Cancelled");
+            window.location.reload();
+        }
+    })
+    localStorage.removeItem("payment");
+}
+
+
 const loadUsers = () => {
     fetch(`https://job-board-backend-lemon.vercel.app/api/users/?id=${user_id}`)
     .then(res => res.json())
@@ -9,7 +31,7 @@ const loadUsers = () => {
 loadUsers();
 //insert main profile data
 const insertProfile = (data) =>{
-    console.log(data);
+    // console.log(data);
     const parent = document.getElementById('parent');
     const div = document.createElement("div");
     div.innerHTML = `
@@ -65,7 +87,10 @@ const insertProfile = (data) =>{
 const loadUsersJob = (user_id) =>{
     fetch(`https://job-board-backend-lemon.vercel.app/api/jobs/?employer=${user_id}`)
     .then(res => res.json())
-    .then(data => insertProfileData(data));
+    .then(data => {if(data.length > 0){
+        insertProfileData(data)
+    }
+    });
 }
 //insert jobs data
 const insertProfileData = (data) => {
@@ -84,7 +109,9 @@ const loadUsersApplications = () => {
     })
         .then(response => response.json())
         .then(data => {
+            if(data.length > 0){
             insertApplicationsData(data);
+            }
         })
         .catch(error => console.error('Error:', error));
 }

@@ -25,6 +25,7 @@ const handleLogout = (event) => {
         localStorage.removeItem("username");
         localStorage.removeItem("user_type");
         localStorage.removeItem("token");
+        localStorage.removeItem('is_premium');
         // Redirect the user to login.html
         window.location.href = "login.html";
         alert("logout successfully");

@@ -120,6 +120,7 @@
                                     <li ><a href="dashboard.html">Dashboard</a></li>
                                     <li ><a href="create_job.html#jobCreateForm">Post Job</a></li>
                                     <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                    
                                 `
                             }
                             else if(user_type == "job_seeker"){
@@ -130,6 +131,7 @@
                                     <li ><a href="dashboard.html">Dashboard</a></li>
                                     <li ><a href="index.html#job-list">Apply Job</a></li>
                                     <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+
                                 `
                             }
                             else{
@@ -167,7 +169,7 @@
                                     const id = localStorage.getItem("category_id");
                                     // API URL
                                     if(id){
-                                        const apiUrl = `https://job-board-backend-zxvu.onrender.com/api/jobs/?category=${id}`;
+                                        const apiUrl = `https://job-board-backend-lemon.vercel.app/api/jobs/?category=${id}`;
                                         const jobCountElement = document.getElementById('job-count');                          
                                         fetch(apiUrl)
                                             .then(response => response.json()) 
@@ -180,12 +182,11 @@
 
                                     }
                                     else{
-                                        const apiUrl = 'https://job-board-backend-zxvu.onrender.com/api/jobs/';
+                                        const apiUrl = 'https://job-board-backend-lemon.vercel.app/api/jobs/';
                                         const jobCountElement = document.getElementById('job-count');                          
                                         fetch(apiUrl)
                                             .then(response => response.json()) 
                                             .then(data => {
-                                                loadJobList(data);
                                                 const jobCount = data.length; 
                                                 jobCountElement.innerHTML= `${jobCount} Jobs listed`;
                                         })

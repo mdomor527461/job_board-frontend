@@ -69,6 +69,7 @@
                                   <li ><a href="dashboard.html">Dashboard</a></li>
                                   <li ><a href="create_job.html#jobCreateForm">Post Job</a></li>
                                   <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                   
                               `
                           }
                           else if(user_type == "job_seeker"){
@@ -79,6 +80,7 @@
                                   <li ><a href="dashboard.html">Dashboard</a></li>
                                   <li ><a href="index.html#job-list">Apply Job</a></li>
                                   <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                
                               `
                           }
                           else{
@@ -217,9 +219,10 @@
   
       </div>
     </div>
+
     <div class="col-lg-3 mt-5" style="width: 20%;">
       <div class="dropdown show">
-        <img src="img/comment/comment_1.png" alt=""><a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img  alt="" id="dashboard-image" style="width: 100px;height: 100px;border-radius: 50%;"><a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <small id="auth-user"></small>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -231,6 +234,11 @@
       </div>
     </div>
 </div>
+<!-- image script  -->
+ <script>
+  const image_url = localStorage.getItem('image_url');
+  document.getElementById('dashboard-image').src = `${image_url ? image_url : 'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp'}`;
+ </script>
 <!-- auth username script  -->
  <script>
   const username =  localStorage.getItem("username");
@@ -550,7 +558,6 @@
 <script src="dashboard.js"></script>
 
 <script src="js/main.js"></script>
-<!-- <script src="dashboard.js"></script> -->
 </body>
 
 </html>

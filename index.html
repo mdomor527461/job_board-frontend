@@ -60,8 +60,9 @@
                          <!-- condition nav  -->
                          <script>
                             const user_type = localStorage.getItem("user_type");
-                            nav_menu = document.getElementById("navigation")
-                            if(user_type == "employer"){
+                            nav_menu = document.getElementById("navigation");
+                            console.log(localStorage.getItem('is_premium'));
+                            if(user_type == "employer" ){
                                 nav_menu.innerHTML = `
                                     <li><a href="index.html">home</a></li>
                                     <li><a href="about.html">About</a></li> 
@@ -69,6 +70,8 @@
                                     <li ><a href="dashboard.html">Dashboard</a></li>
                                     <li ><a href="create_job.html#jobCreateForm">Post Job</a></li>
                                     <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                    ${(localStorage.getItem("is_premium")) === "true" ? "<li><button class='btn btn-success p-3'>Premium User</button></li>" : "<li><button onclick='payment()' class='btn btn-success p-3'>JobHub Premium</button></li>"}
+                        
                                 `
                             }
                             else if(user_type == "job_seeker"){
@@ -79,6 +82,7 @@
                                     <li ><a href="dashboard.html">Dashboard</a></li>
                                     <li ><a href="index.html#job-list">Apply Job</a></li>
                                     <li onclick="handleLogout(event)" style="cursor: pointer;color:white;">Logout</li>
+                                    ${(localStorage.getItem("is_premium")) === "true" ? "<li><button class='btn btn-success p-3'>Premium User</button></li>" : "<li><button onclick='payment()' class='btn btn-success p-3'>JobHub Premium</button></li>"}
                                 `
                             }
                             else{
@@ -89,6 +93,7 @@
                                 `;
                             }
                         </script>
+                        
 
 
                         <div class="col-12">
@@ -387,7 +392,7 @@
     <script src="joblist.js"></script>
     <script src="categories.js"></script>
     <script src="logout.js"></script>
-    
+    <script src="payment.js"></script>
 </body>
 
 </html>
