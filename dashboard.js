@@ -178,7 +178,7 @@ const insertApplicantData = (data) => {
         tr.innerHTML = `
              <th scope="col">${item.id}</th>
             <th scope="col">${item.applicant}</th>
-            <th scope="col"><a href="https://res.cloudinary.com/dtinvdr6a/${ item.resume }" target="_blank">show resume</a></th>
+            <th scope="col"><a href="https://res.cloudinary.com/dtinvdr6a/raw/upload/${item.resume}" target="_blank">Show Resume</a></th>
             <th scope="col">${(new Date(item.applied_at).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }))}</th>
         `
         console.log(tr);
